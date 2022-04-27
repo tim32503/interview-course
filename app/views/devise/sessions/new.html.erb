@@ -3,7 +3,7 @@
   </div>
   <div class="col-md-8">
     <section class="card">
-      <h4 class="text-center mt-3">登入</h4>
+      <h2 class="text-center mt-3">登入</h2>
       <div class="card-body">
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <div class="mb-3">
@@ -21,9 +21,6 @@
           </div>
         <% end %>
       </div>
-      <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-        <%= link_to "忘記密碼", new_password_path(resource_name), class: 'btn btn-link mb-3' %>
-      <% end %>
     </section>
   </div>
   <div class="col-md-2">
