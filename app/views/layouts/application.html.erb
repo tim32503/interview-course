@@ -10,18 +10,9 @@
   </head>
 
   <body>
-    <header>
-      <nav class="navbar navbar-light bg-light">
-        <div class="container-md">
-          <%= link_to('Hao 教室', root_path, class: 'navbar-brand') %>
-            <form class="d-flex">
-              <%= link_to('登入', '#', class: 'btn btn-outline-dark me-3') %>
-              <%= link_to('註冊', '#', class: 'btn btn-dark') %>
-            </form>
-        </div>
-      </nav>
-    </header>
-    <main class="container-md">
+    <%= render 'shared/navbar' %>
+    <%= render "shared/flash" if notice || alert %> 
+    <main class="container-md mt-5">
       <%= yield %>
     </main>
   </body>

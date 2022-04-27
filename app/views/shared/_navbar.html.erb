@@ -1,0 +1,16 @@
+<header>
+  <nav class="navbar navbar-light bg-light">
+    <div class="container-md">
+      <%= link_to('Hao 教室', root_path, class: 'navbar-brand') %>
+        <form class="d-flex">
+          <% if user_signed_in? %>
+            <%= link_to('登出', destroy_user_session_path, method: :delete, class: 'btn btn-outline-dark me-3') %>
+            <%= link_to('教師專區', '#', class: 'btn btn-dark') %>
+          <% else %>
+            <%= link_to('登入', new_user_session_path, class: 'btn btn-outline-dark me-3') %>
+            <%= link_to('註冊', new_user_registration_path, class: 'btn btn-dark') %>
+          <% end %>
+        </form>
+    </div>
+  </nav>
+</header>
