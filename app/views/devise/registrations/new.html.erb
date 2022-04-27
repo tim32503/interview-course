@@ -11,6 +11,11 @@
           </div>
 
           <div class="mb-3">
+            <%= f.label :role, '身份別', class: 'form-label' %>
+            <%= f.select :role, user_role_options, {}, class: 'form-select' %>
+          </div>
+
+          <div class="mb-3">
             <%= f.label :email, '電子信箱', class: 'form-label' %>
             <%= f.email_field :email, class: 'form-control', autofocus: true, autocomplete: "email" %>
           </div>
