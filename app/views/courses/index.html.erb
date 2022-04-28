@@ -26,14 +26,16 @@
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ">
     <% @courses.each do |course| %>
       <div class="col">
-        <div class="card">
+        <div class="card shadow">
           <img src="https://fakeimg.pl/300x200/ccc">
           <div class="card-body">
-            <h5><%= course.title %></h5>
+            <div class="course-title d-flex justify-content-between">
+              <h5><%= course.title %></h5>
+              <h5><%= "$ #{course.price.to_i}" %></h5>
+            </div>
             <p class="card-text"><%= course.description %></p>
             <div class="d-flex justify-content-between align-items-center">
               <div class="btn-group">
-                <%= link_to('檢視', course_path(course), class: 'btn btn-sm btn-outline-dark') %>
                 <%= link_to('編輯', edit_course_path(course), class: 'btn btn-sm btn-outline-dark') %>
                 <%= link_to('刪除', course_path(course), method: :delete, class: 'btn btn-sm btn-outline-danger', data: { confirm: "確認刪除?" }) %>
               </div>
