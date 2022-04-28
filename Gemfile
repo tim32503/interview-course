@@ -73,3 +73,5 @@ gem 'jquery-rails'
 gem 'devise', '~> 4.8', '>= 4.8.1'
 
 gem 'cancancan', '~> 3.3'
+
+gem 'faker', '~> 2.20'
