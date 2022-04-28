@@ -2,5 +2,7 @@
 
 # 首頁
 class HomeController < ApplicationController
-  def index; end
+  def index
+    @courses = Course.is_available
+  end
 end

@@ -1,6 +1,20 @@
 <div class="row">
-  <div class="col-md-12 pt-3">
-    <h2>最新課程</h2>
+  <div class="col-md-6">
+    <section class="h-100 p-5 bg-dark text-white rounded-3">
+      <h2><%= user_role_name %>您好！</h2>
+    </section>
+  </div>
+  <div class="col-md-6">
+    <section class="h-100 p-5 bg-light border rounded-3">
+      <h2>還沒開課嗎？</h2>
+      <p><%= Faker::Lorem.paragraph %></p>
+      <%= link_to('打造獨一無二的課程去！', new_course_path, class: 'btn btn-secondary') %>
+    </section>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 pt-5">
+    <h3>課程列表</h3>
   </div>
 </div>
 <div class="row">
@@ -21,10 +35,11 @@
             </div>
             <p class="card-text"><%= course.description %></p>
             <div class="d-flex justify-content-between align-items-center">
-              <small class="text-muted"><%= "By #{course.user.name}" if course.user.name.present? %></small>
               <div class="btn-group">
-                <%= link_to('購買', '#', class: 'btn btn-secondary') %>
+                <%= link_to('編輯', edit_course_path(course), class: 'btn btn-sm btn-outline-dark') %>
+                <%= link_to('刪除', course_path(course), method: :delete, class: 'btn btn-sm btn-outline-danger', data: { confirm: "確認刪除?" }) %>
               </div>
+              <small class="text-muted"><%= "By #{course.user.name}" if course.user.name.present? %></small>
             </div>
           </div>
         </div>

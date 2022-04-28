@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-md-12 pb-3">
+    <div class="card shadow">
+      <div class="card-body">
+        <%= form_for(course) do |f| %>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <%= f.label :title, '標題', class: 'form-label' %>
+              <%= f.text_field :title, class: 'form-control' %>
+            </div>
+            <div class="col-md-3">
+              <%= f.label :url, '自訂網址', class: 'form-label' %>
+              <%= f.text_field :url, class: 'form-control' %>
+            </div>
+            <div class="col-md-3">
+              <%= f.label :course_type, '類型', class: 'form-label' %>
+              <%= f.select :course_type, course_type_options, {}, class: 'form-select' %>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <%= f.label :expiration_period, '效期', class: 'form-label' %>
+              <%= f.select :expiration_period, expiration_period_options, {}, class: 'form-select' %>
+            </div>
+            <div class="col-md-6">
+              <%= f.label :price, '售價', class: 'form-label' %>
+              <div class="input-group">
+                <%= f.select :currency, currency_options, { include_blank: '幣別' }, class: 'form-select' %>
+                <%= f.text_field :price, class: 'form-control' %>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <%= f.label :description, '描述', class: 'form-label' %>
+              <%= f.text_area :description, class: 'form-control' %>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-12">
+              <div class="form-check">
+                <%= f.check_box :is_launched, class: 'form-check-input' %>
+                <%= f.label :is_launched, '是否上架', class: 'form-check-label' %>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <div class="col-md-12 d-grid">
+              <%= f.submit '儲存', class: 'btn btn-secondary' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
