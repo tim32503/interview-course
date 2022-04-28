@@ -16,6 +16,11 @@
           </div>
 
           <div class="mb-3">
+            <%= f.label :name, '姓名', class: 'form-label' %>
+            <%= f.text_field :name, class: 'form-control' %>
+          </div>
+
+          <div class="mb-3">
             <%= f.label :email, '電子信箱', class: 'form-label' %>
             <%= f.email_field :email, class: 'form-control', autofocus: true, autocomplete: "email" %>
           </div>
