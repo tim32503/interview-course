@@ -11,5 +11,6 @@ module V1
     helpers ::V1::Helpers
 
     mount Courses
+    mount Orders
   end
 end
