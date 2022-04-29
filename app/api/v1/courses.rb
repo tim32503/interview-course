@@ -19,12 +19,7 @@ module V1
 
       raise StandardError unless order.save
 
-      {
-        lesson: V1::Entities::Order.represent(
-          order,
-          only: [:id, :expired_at, { course: %i[title currency price course_type teacher] }]
-        )
-      }
+      V1::Entities::Order.represent(order)
     end
   end
 end
