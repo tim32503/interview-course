@@ -10,7 +10,6 @@ module V1
 
     helpers ::V1::Helpers
 
-    mount Lessons
     mount Courses
   end
 end
