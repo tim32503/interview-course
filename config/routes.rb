@@ -5,5 +5,7 @@ Rails.application.routes.draw do
 
   resources :courses
 
+  mount ApiRoot => ApiRoot::PREFIX
+
   root to: 'home#index'
 end
