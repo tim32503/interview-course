@@ -40,6 +40,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails', '~> 4.1.0'
+  gem 'factory_bot_rails', '~> 6.2'
 end
 
 group :development do
@@ -63,15 +64,9 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'grape', '~> 1.6'
-
 gem 'grape-entity', '~> 0.10.1'
-
 gem 'bootstrap', '~> 5.1.3'
-
 gem 'jquery-rails'
-
 gem 'devise', '~> 4.8', '>= 4.8.1'
-
 gem 'cancancan', '~> 3.3'
-
 gem 'faker', '~> 2.20'
