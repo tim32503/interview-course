@@ -3,12 +3,21 @@
 # 課程
 class CoursesController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_course, only: %i[edit update destroy]
+  before_action :user_find_course, only: [:show]
+  before_action :admin_find_course, only: %i[edit update destroy]
 
   load_and_authorize_resource
 
   def index
-    @courses = Course.accessible_by(current_ability)
+    @courses = Course.accessible_by(current_ability, :manage)
+  end
+
+  def show; end
+
+  def customize
+    @course = Course.find_by(url: params[:customize])
+
+    render :show
   end
 
   def new
@@ -43,8 +52,12 @@ class CoursesController < ApplicationController
 
   private
 
-  def find_course
-    @course = current_user.courses.find_by(id: params[:id])
+  def admin_find_course
+    @course = Course.accessible_by(current_ability, :manage).find_by(id: params[:id])
+  end
+
+  def user_find_course
+    @course = Course.accessible_by(current_ability, :read).find_by(id: params[:id])
   end
 
   def course_params

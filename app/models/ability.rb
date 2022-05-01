@@ -7,6 +7,8 @@ class Ability
   def initialize(user)
     cannot :manage, :all
 
+    can :read, Course
+
     return unless user.role == 'admin'
 
     can :manage, Course, user: user

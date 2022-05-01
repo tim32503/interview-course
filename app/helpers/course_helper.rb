@@ -26,4 +26,8 @@ module CourseHelper
   def expiration_period_options
     (1..31).map { |day| ["#{day} 天", day] }
   end
+
+  def url_for_course(course)
+    course.url.present? ? "/courses/#{course.url}" : course_path(course)
+  end
 end

@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12 pt-3">
-    <h2>最新課程</h2>
+    <h2>所有課程</h2>
   </div>
 </div>
 <div class="row">
@@ -13,7 +13,7 @@
     <% @courses.each do |course| %>
       <div class="col">
         <div class="card shadow">
-          <img src="https://fakeimg.pl/300x200/ccc">
+          <img src="https://picsum.photos/seed/<%= course.title %>/300/200">
           <div class="card-body">
             <div class="course-title d-flex justify-content-between">
               <h5><%= course.title %></h5>
@@ -23,7 +23,12 @@
             <div class="d-flex justify-content-between align-items-center">
               <small class="text-muted"><%= "By #{course.user.name}" if course.user.name.present? %></small>
               <div class="btn-group">
-                <%= link_to('購買', '#', class: 'btn btn-secondary') %>
+                <%= link_to(url_for_course(course), class: 'btn btn-sm btn-outline-dark') do %>
+                  <i class="fa-solid fa-eye"></i>
+                <% end %>
+                <%= link_to('#', class: 'btn btn-sm btn-outline-dark') do %>
+                  <i class="fa-solid fa-cart-shopping"></i>
+                <% end %>
               </div>
             </div>
           </div>
