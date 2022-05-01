@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :orders, only: [:index]
+
   mount ApiRoot => ApiRoot::PREFIX
 
   root to: 'home#index'

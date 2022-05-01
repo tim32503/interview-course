@@ -54,7 +54,7 @@
       $.ajax({
         url: `/api/v1/courses/${this_button_id}/buy`,
         type: 'POST',
-        data: { token: "<%= current_user&.tokens&.first.key %>" },
+        data: { token: "<%= current_user&.tokens&.first&.key %>" },
         success: function(){
           alert('購買成功！');
         },

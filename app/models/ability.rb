@@ -8,6 +8,7 @@ class Ability
     cannot :manage, :all
 
     can :read, Course
+    can :read, Order, student: user
 
     return unless user.role == 'admin'
 
