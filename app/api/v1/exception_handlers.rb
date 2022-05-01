@@ -7,22 +7,17 @@ module V1
       base.instance_eval do
         # Grape 驗證錯誤
         rescue_from Grape::Exceptions::ValidationErrors do |e|
-          rack_response({
-            error: {
-              code: 1001,
-              message: e.message
-            }
-          }.to_json, e.status)
+          error!({ error: { code: e.status, message: e.message } }, e.status)
         end
 
         # 查無 Record
         rescue_from ActiveRecord::RecordNotFound do
-          rack_response({ message: '404 Not found' }.to_json, 404)
+          error!({ error: { code: 404, message: '404 Not Found' } }, 404)
         end
 
         # 無對應路徑
         route :any, '*path' do
-          error!('404 Not Found', 404)
+          error!({ error: { code: 404, message: '404 Not Found' } }, 404)
         end
       end
     end
@@ -34,23 +29,22 @@ module V1
     def initialize(opts = {})
       super
 
-      @code    = opts[:code]   || 2000
+      @status  = opts[:status] || 400
       @text    = opts[:text]   || ''
 
-      @status  = opts[:status] || 400
-      @message = { error: { code: @code, message: @text } }
+      @message = { error: { code: @status, message: @text } }
     end
   end
 
   class AuthorizationError < Error
     def initialize
-      super(code: 2001, text: 'Authorization failed', status: 401)
+      super(status: 401, text: 'Authorization failed')
     end
   end
 
   class CannotBuyLessonError < Error
     def initialize
-      super(code: 3001, text: '您已購買過此課程，且仍在有效期限內', status: 401)
+      super(status: 404, text: '您已購買過此課程，且仍在有效期限內')
     end
   end
 end
