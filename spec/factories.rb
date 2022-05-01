@@ -32,10 +32,12 @@ FactoryBot.define do
     course_name = Faker::Educator.unique.course_name
 
     title { course_name }
+    description { Faker::Lorem.paragraph }
     currency { 'TWD' }
     price { Faker::Number.within(range: 100..2000) }
     course_type { course_name.split(' ')[0..-2].join(' ') }
     expiration_period { Faker::Number.between(from: 1, to: 31) }
+    url { course_name.strip.gsub(' ','_').downcase }
     user factory: :teacher
 
     factory :available_course do

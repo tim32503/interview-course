@@ -8,4 +8,8 @@ class User < ApplicationRecord
   has_many :orders
   has_many :lessons, through: :orders, source: :lesson
   has_many :tokens, class_name: 'ApiAccessToken'
+
+  after_create do
+    tokens.create
+  end
 end

@@ -1,0 +1,117 @@
+<div class="row">
+  <div class="col-md-12 pt-3">
+    <h2>訂購紀錄</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12 pb-3">
+    <hr/>
+  </div>
+</div>
+<div class="row mb-5">
+  <div class="col-md-12">
+    <div id="orderList"></div>
+  </div>
+</div>
+<div class="row mb-3">
+  <div class="col-md-12">
+    <%= link_to '返回首頁', root_path, class: 'btn btn-outline-dark' %>
+  </div>
+</div>
+
+<script>
+  $(document).on('turbolinks:load',function(){
+    $.ajax({
+      url: '/api/v1/orders?token=<%= current_user&.tokens&.first.key %>',
+      type: 'GET',
+      success: function(res){
+        let orders = res.orders;
+
+        if (orders.length > 0) {
+          dataCard(orders);
+        } else {
+          let text = document.createElement('h5');
+          text.textContent = '目前尚無訂單資料';
+
+          let list = document.getElementById('orderList');
+
+          list.appendChild(text);
+        }
+      }
+    });
+  })
+
+  function dataCard(orders) {
+    let row, col, card, header, headerText, body, title, titleText, img, text;
+
+    orders.forEach(order => {
+      card = document.createElement('div');
+      card.classList.add('card');
+
+      header = document.createElement('div');
+      header.classList.add('card-header');
+
+      headerText = document.createElement('h5');
+      headerText.textContent = `#${order.id}`;
+
+      row = document.createElement('div');
+      row.classList.add('row');
+      row.classList.add('g-0');
+
+      col = document.createElement('div');
+      col.classList.add('col-md-4');
+
+      img = document.createElement('img');
+      img.src = `https://picsum.photos/seed/${order.title}/300/200`;
+      img.classList.add('img-fluid');
+
+      col.appendChild(img);
+      row.appendChild(col);
+      
+      col = document.createElement('div');
+      col.classList.add('col-md-8');
+
+      body = document.createElement('div');
+      body.classList.add('card-body');
+
+      title = document.createElement('div');
+      title.classList.add('card-title');
+
+      titleText = document.createElement('h3');
+      titleText.classList.add('mb-3');
+      titleText.textContent = order.title;
+
+      title.appendChild(titleText);
+      body.appendChild(title);
+
+      text = document.createElement('p');
+      text.classList.add('card-text');
+      text.textContent = `訂單金額: ${order.total}`;
+      body.appendChild(text);
+
+      text = document.createElement('p');
+      text.classList.add('card-text');
+      text.textContent = `課程有效期限: ${order.expired_at} 止`;
+      body.appendChild(text);
+
+      col.appendChild(body);
+      row.appendChild(col);
+
+      header.appendChild(headerText);
+      card.appendChild(header);
+      card.appendChild(row);
+
+      row = document.createElement('div');
+      row.classList.add('row');
+      row.classList.add('mb-3');
+      
+      col = document.createElement('div');
+      col.classList.add('col-md-12');
+
+      col.appendChild(card);
+      row.appendChild(col);
+
+      document.getElementById('orderList').appendChild(row);
+    });
+  }
+</script>
