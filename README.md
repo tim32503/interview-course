@@ -1,24 +1,19 @@
-# README
+# Snapask 作業 - Hao 教室
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## 網站環境
 
-Things you may want to cover:
+- Ruby 版本： 2.6.6
+- Rails 版本： 5.2.7
+- 資料庫： PostgeSQL
+- Grape 版本： 1.6.2
+- Grape-Entity 版本： 0.10.1
 
-* Ruby version
+## 網站功能
 
-* System dependencies
+### 課程
+1. 提供管理員針對課程進行新增上架、編輯、刪除、下架等功能
+2. 課程可自定義網址
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### 訂購
+1. 會員可購買上架中的所有課程，但當課程下架或是有課程尚在有效期限內，則不可購買
+2. 可查看個人的所有訂購紀錄及課程有效期限
